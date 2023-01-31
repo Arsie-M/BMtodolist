@@ -8,7 +8,7 @@ const { iteratee } = require("lodash");
 const app = express();
 const port = process.env.PORT || 9000;
 mongoose.set("strictQuery", false);
-mongoose.connect("mongodb+srv://"+process.env.USR+":"+process.env.PSWD+"@"+process.env.CLST+".gmqhgfe.mongodb.net/toDoLiveVersionDB");
+mongoose.connect(process.env.MONGODB_URI);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.set("view engine", "ejs");
