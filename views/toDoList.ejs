@@ -1,0 +1,36 @@
+<%- include("header"); -%>
+
+
+    <div class="box" id="heading">
+       
+        <h1><%= listTitle %></h1>
+
+    </div>
+
+    
+    <div class="box">
+    
+    
+        <% newListTasks.forEach(function(task) { %>  <!--for Each task in array of tasks print task.name in p  --> 
+        <form action="/delete" method="post">
+            <div class="item">
+                <!--tapping into item by creating value and ejs method which will reflect _id of created document (item) added to DB and help to tap into checkedTask when checking box will submit <form> to app.post -->
+                <input type="checkbox" class="checkbox-color" name = "checkedTask" onChange="this.form.submit()" value="<%= task._id %>" required>
+                <p> <%= task.name %></p>
+            </div>
+            <input type="hidden" name="routeInUse" value= "<%= listTitle %>">     <!--used to tap into list name via name="routeInUse"-->
+        </form>
+        <% }); %> 
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newTask" placeholder="Add New Task" autocomplete="off">
+            <button type="submit" name="list" value= "<%= listTitle %>">+</button>
+        </form>
+
+
+
+    </div>
+
+
+
+<%- include("footer"); -%>
